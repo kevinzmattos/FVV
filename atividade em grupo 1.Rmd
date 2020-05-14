@@ -1,5 +1,5 @@
 ---
-title: "Atividade em grupo 1"
+title: "Relatório"
 author: "Kevin, Hugo, Hideki"
 output:
   pdf_document: default
