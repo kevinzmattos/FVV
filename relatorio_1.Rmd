@@ -1,0 +1,288 @@
+---
+title: "Relatório"
+author: "Hideki Seckler, Hugo Trigueiro, Kevin Zavala"
+output: pdf_document
+classoption: twocolumn
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+```
+
+#  Primeira etapa - Encontrando os mínimos locais
+<p> Considere a função: </p>
+
+
+**$S(m,b) = \sum_{j=1}^{n}(mx_j - y_j + b)^2$**
+<p>do método dos mínimos quadrados. </p>
+<p> Queremos encontrar a reta que minimize a distância dos pontos - casos de Covid-19 na Inglaterra - à reta teórica. A função s(m,b) descreve esta distância, portanto queremos minizá-la.<p> 
+
+##  (a) Encontrar o gradiente de **S** num ponto **(m,b)** genérico
+<p> O gradiente de uma função *f*, denotado por $\nabla f$, é a coleção de todas as suas derivadas parciais em um vetor. Deste modo, para encontrar **possíveis** pontos mínimos de uma função devemos conhecer todas suas derivadas parciais e depois igualá-las a zero.</p>
+
+<p>**Gradiente:$\nabla S(m,b) = (\dfrac{\partial S}{\partial m}(m_o,b_0),\dfrac{\partial S}{\partial b} (m_o,b_o))$**</p>
+
+<p> Então $\nabla S(m,b)$ é:
+
+<p> $\dfrac{\partial S}{\partial m} = \dfrac{\partial }{\partial m}\sum_{j=1}^{n}(mx_j - y_j + b)^2 = \sum_{j=1}^{n} \dfrac{\partial }{\partial m} (mx_j - y_j + b)^2$ </p>
+<p> $\dfrac{\partial S}{\partial m} = \sum_{j=1}^{n} 2(mx_j-y_j+b) (xj)$</p>
+\fbox{$\dfrac{\partial S}{\partial m} = 2 [m\sum_{j=1}^{n}x_j^2 - \sum_{j=1}^{n}x_jy_j+b\sum_{j=1}^{n}x_j]$}
+
+<p>$\dfrac{\partial S}{\partial b} = \dfrac{\partial }{\partial b}\sum_{j=1}^{n}(mx_j - y_j + b)^2 = \sum_{j=1}^{n} \dfrac{\partial }{\partial b} (mx_j - y_j + b)^2$</p>
+<p>$\dfrac{\partial S}{\partial b} = \sum_{j=1}^{n}2(mx_j-y_j+b)$ </p>
+\fbox{$\dfrac{\partial S}{\partial b} = 2[m\sum_{j=1}^{n}x_j - \sum_{j=1}^{n}y_j + \sum_{j=1}^{n}b]$}
+
+
+##  (b) Os pontos críticos
+
+Para econtrarmos os **possíveis** pontos mínimos vamos calcular os pontos críticos. Isto equivale a dizer que vamos calcular 
+
+$\dfrac{\partial S}{\partial m} = 0,\dfrac{\partial S}{\partial b} =0$
+
+
+$\dfrac{\partial S}{\partial m}= 2 [m\sum_{j=1}^{n}x_j^2 - \sum_{j=1}^{n}x_jy_j+b\sum_{j=1}^{n}x_j] = 0$
+
+
+$\dfrac{\partial S}{\partial m}= 2m\sum_{j=1}^{n}x_j^2 -2\sum_{j=1}^{n}x_jy_j+2b\sum_{j=1}^{n}x_j = 0$
+
+$\Rightarrow 2m\sum_{j=1}^{n}x_j^2 +2b\sum_{j=1}^{n}x_j = 2\sum_{j=1}^{n}x_jy_j$
+
+$\Rightarrow2[m\sum_{j=1}^{n}x_j^2 +b\sum_{j=1}^{n}x_j] = 2\sum_{j=1}^{n}x_jy_j$
+
+Portanto:
+
+\fbox{$\dfrac{\partial S}{\partial m}=0\Rightarrow m\sum_{j=1}^{n}x_j^2 +b\sum_{j=1}^{n}x_j = \sum_{j=1}^{n}x_jy_j$}
+
+
+
+$\dfrac{\partial S}{\partial b} =  2[m\sum_{j=1}^{n}x_j - \sum_{j=1}^{n}y_j + \sum_{j=1}^{n}b] = 0$
+
+
+$\dfrac{\partial S}{\partial b} =  2m\sum_{j=1}^{n}x_j - 2\sum_{j=1}^{n}y_j + 2\sum_{j=1}^{n}b = 0$
+
+$\Rightarrow 2m\sum_{j=1}^{n}x_j + 2\sum_{j=1}^{n}b = 2\sum_{j=1}^{n}y_j$
+
+*Obs:$\sum_{j=1}^{n}b = nb$*
+
+$\Rightarrow 2m\sum_{j=1}^{n}x_j + 2nb = 2\sum_{j=1}^{n}y_j$
+
+$\Rightarrow 2[m\sum_{j=1}^{n}x_j + nb] = 2\sum_{j=1}^{n}y_j$
+
+Portanto:
+
+\fbox{$\dfrac{\partial S}{\partial b}=0 \Rightarrow m\sum_{j=1}^{n}x_j + nb = \sum_{j=1}^{n}y_j$}
+
+
+##  (c) Determinando a matriz Hessiana de S no ponto (m,b) 
+Para que o ponto seja mínimo, deve-se atender as seguintes condições: $S_{mm}(m,b) >0$, Determinante da matriz Hessiana [H(m,b)] = 0.
+
+$$H(m,b)= \left[\begin{array}{cc}
+S_{mm}(m,b) & S_{mb}(m,b)\\
+S_{mb}(m,b)& S_{mm}(m,b)\\
+\end{array}
+\right]_{2\times 2}$$
+
+$S_{mm}=\dfrac{\partial^2 S}{\partial^2 m} =\dfrac{\partial^2 }{\partial^2 m} 2 [m\sum_{j=1}^{n}x_j^2 - \sum_{j=1}^{n}x_jy_j+b\sum_{j=1}^{n}x_j]$
+
+
+$S_{mm}=2[\dfrac{\partial^2 }{\partial^2 m}m\sum_{j=1}^{n}x_j^2 - \dfrac{\partial^2 }{\partial^2 m}\sum_{j=1}^{n}x_jy_j - \dfrac{\partial^2 f}{\partial^2 m}b\sum_{j=1}^{n}x_j]$
+
+
+$\dfrac{\partial^2 }{\partial^2 m} m\sum_{j=1}^{n}x_j^2 = \sum_{j=1}^{n}x_j^2$ 
+
+
+$\dfrac{\partial^2 }{\partial^2 m}- \sum_{j=1}^{n}x_jy_j=0$ 
+
+
+
+$\dfrac{\partial^2 }{\partial^2 m}b\sum_{j=1}^{n}x_j=0$
+
+
+ \fbox{$S_{mm}=2\sum_{j=1}^{n}x_j^2$} 
+
+
+
+<p> $S_{mb}=\dfrac{\partial^2 S}{\partial b \partial m}=\dfrac{\partial^2 }{\partial b \partial m} 2 [m\sum_{j=1}^{n}x_j^2 - \sum_{j=1}^{n}x_jy_j+b\sum_{j=1}^{n}x_j]$
+
+
+$S_{mb}=2[\dfrac{\partial^2 }{\partial b \partial m}m\sum_{j=1}^{n}x_j^2 - \dfrac{\partial^2 }{\partial b \partial m}\sum_{j=1}^{n}x_jy_j + \dfrac{\partial^2 }{\partial b \partial m}b\sum_{j=1}^{n}x_j]$
+
+
+$\dfrac{\partial^2 }{\partial b \partial m}m\sum_{j=1}^{n}x_j^2=0$ 
+
+$-\dfrac{\partial^2 }{\partial b \partial m}\sum_{j=1}^{n}x_jy_j =0$ 
+
+$\dfrac{\partial^2 }{\partial b \partial m}b\sum_{j=1}^{n}x_j = \sum_{j=1}^{n}x_j$
+
+
+\fbox{$S_{mb}=2\sum_{j=1}^{n}x_j$}
+
+
+
+$S_{bb}=\dfrac{\partial^2 S}{\partial^2 b}=  \dfrac{\partial^2 }{\partial^2 b} 2[m\sum_{j=1}^{n}x_j - \sum_{j=1}^{n}y_j + \sum_{j=1}^{n}b]$
+
+$S_{bb}=2[\dfrac{\partial^2 }{\partial^2 b}m\sum_{j=1}^{n}x_j^2 - \dfrac{\partial^2 }{\partial^2 b }\sum_{j=1}^{n}x_jy_j + \dfrac{\partial^2 }{\partial^2 b }b\sum_{j=1}^{n}x_j]$
+
+
+$\dfrac{\partial^2 }{\partial^2 b} m\sum_{j=1}^{n}x_j=0$
+
+$\dfrac{\partial^2 }{\partial^2 b}- \sum_{j=1}^{n}y_j=0$
+
+
+$\dfrac{\partial^2 }{\partial^2 b} \sum_{j=1}^{n}b=n$
+
+
+\fbox{$S_{bb}=2n$}
+
+
+<p> **Portanto temos que a Hessiana de S é:**</p>
+$$H(m,b)= \left[\begin{array}{cc}
+2\sum_{j=1}^{n}x_j^2 & 2\sum_{j=1}^{n}x_j\\
+2\sum_{j=1}^{n}x_j & 2n\\
+\end{array}
+\right]_{2\times 2}$$
+
+
+##  (d) Teste da segunda derivada
+
+O cálculo da determinante é dado por: $D= detH(m,b)= S_{mm}(m,b)S_{bb}(m,b) - S_{mb}(m,b)^2$
+
+<p> $D= 2\sum_{j=1}^{n}x_j^2 \times 2n - (2\sum_{j=1}^{n}x_j)^2$ </p>
+<p> $D= 4n\sum_{j=1}^{n}x_j^2- 4(\sum_{j=1}^{n}x_j)^2$</p>
+
+
+**Assumindo que $2\sum_{j=1}^{n}x_j^2 - (2\sum_{j=1}^{n}x_j)^2 > 0$**
+
+
+$detH(m,b)>0$.
+
+Como: $S_{mm} = 2\sum_{j=1}^{n}x_j^2 >0$
+
+\fbox{O ponto (m,b) é ponto de mínimo local}
+
+
+#  Segunda etapa - Determinação e esboço da reta teórica de aproximação
+              
+                        
+
+```{r message=FALSE, warning=FALSE, include=FALSE, paged.print=TRUE}
+dados <- readxl::read_xls("Atividade-9.xls", 
+                          sheet = "Atividade 9 - Casos Reino Unido", skip = 2) %>% 
+  select(c("Data", "Dia (t)","Total de casos (N)"))
+colnames(dados) <- c("Data","Dia","total_casos")
+dados <- dados %>% mutate(log_casos = log(total_casos))
+```
+O ponto de mínimo será a solução do sistema:
+<p>$$m\sum_{j=1}^{n}x_j^2 +b\sum_{j=1}^{n}x_j = \sum_{j=1}^{n}x_jy_j$$ </p>
+<p>$$m\sum_{j=1}^{n}x_j + nb= \sum_{j=1}^{n}y_j$$</p>
+
+
+Para resolver o sistema usaremos os dados de tal modo que $x_i$= Dia,$y_i$ = ln(Número de casos), $n$= número de observações 
+
+ $\sum_{j=1}^{50}x_j^2 = 42925$
+```{r include=FALSE}
+dados <- dados %>% mutate(dias_2 = Dia^2) 
+sum(dados$dias_2) # obtendo a soma dos quadrados de xi (dias)
+```
+
+
+$\sum_{j=1}^{50}x_j = 1275$
+
+```{r include=FALSE}
+sum(dados$Dia) # soma dos dias
+```
+
+
+$\sum_{j=1}^{50}x_jy_j= 11783.61$
+```{r include=FALSE}
+dados <- dados%>% mutate(x_y = Dia * log_casos)
+sum(dados$x_y) #soma das multiplicações dos dias com o log dos casos
+
+```
+
+
+$\sum_{j=1}^{50}y_j=382.0408$
+```{r include=FALSE}
+sum(dados$log_casos) # soma do log dos casos
+```
+
+Portanto o sistema fica assim:
+
+$42925m + 1275b = 11783.61$
+
+
+$1275m + 50b = 382.0408$
+
+
+Solução:
+
+<p>----------------------------------------------</p>
+$42925m + 1275b = 11783.61$**(2)**
+
+
+$1275m + 50b = 382.0408$**(51)**
+<p>----------------------------------------------</p>
+
+$85850m + 2550b = 23567.22$
+
+
+$65025m + 2550b = 19484.08$ **(-)**
+
+
+
+
+$20825m = 4083.14$
+
+
+\fbox{$m = 0.1960691$}
+
+
+$1275(0.1960691) + 50b = 382.0408$ 
+
+
+\fbox{$b = 2.641054$}
+
+$y = mx + b$
+
+**\fbox{$y = 0.1960691x +2.641054$}**
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 3.5, fig.width = 5.5}
+library(ggthemes)
+ggplot(dados,aes(Dia,log_casos))+
+  geom_point(color="red")+ # scatter plot dos dados
+  geom_abline(slope = 0.1960691, intercept = 2.641054)+ # reta estimada
+  labs(title = " Curva do log do número de casos vs reta teórica", x= "Dia", y= "log(número de casos)") +
+  theme_calc()+
+  theme(legend.title = element_text(face = 'bold', size = 16),
+        axis.title = element_text(face = 'bold', size = 10))
+
+```
+
+# Terceira etapa  - Determinação e esboço da curva exponencial
+
+<p> $N= \alpha \text{e}^{\beta x}$</p>
+<p> $y = ln(N)=\ln(\alpha \text{e}^{\beta x}) = ln(\alpha) + ln(e^{\beta x})= \beta x + ln(\alpha)$</p>
+
+ Como $y = ln(N) \rightarrow N=e^y = e^{mx+b}$
+
+
+\fbox{$e^{0.1960691x + 2.641054}$}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height = 3.5, fig.width = 5.5}
+library(ggthemes)
+ggplot(dados,aes(Dia, total_casos))+
+  geom_point(color="red") +
+  stat_function(fun= function(x)exp(0.1960691*x + 2.641054), geom="line") +
+   labs(title = "Curva do número de casos e a curva teórica", x= "Dia", y= "número de casos") +
+ theme_calc()+
+  theme(legend.title = element_text(face = 'bold', size = 16),
+        axis.title = element_text(face = 'bold', size = 10))
+
+```
+
+\vfill\null
+
+#  Conclusão
+
+O gráfico fornecido e o gráfico obtido a partir da minimização de $S(m,b)$ são muito parecidos. Ademais, vê-se que até o dia 40, a curva real está muito próxima da curva teórica, o que demonstra a eficiência deste simples método no cálculo do número de casos nos primeiros dias.

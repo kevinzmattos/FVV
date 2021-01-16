@@ -1,0 +1,300 @@
+---
+title: "Atividade 2 - Grupo 44"
+author: "Hideki Seckler, Hugo Trigueiro, Kevin Zavala"
+output: pdf_document
+classoption: twocolumn
+---
+
+
+# 1.  Massa M de S
+
+Suponha que o corpo S seja sólido cuja base é o cone $z^2=x^2+y^2$ e a parte superior é a esfera $x^2+y^2+(z-1)^2=1$ e que tenha densidade de massa $\rho(x,y,z) = x^2+y^2+z^2$.
+
+$M = \displaystyle\int \int \int_{S}\rho(x,y,z)dV$
+
+Como $\rho(x,y,z)=x^2+y^2 +z^2$ 
+
+Vamos transformar estas coordenadas em coordernadas esféricas. Temos que
+
+$x= \rho \, cos\theta \, sen\phi$
+
+$y = \rho \,sen\theta  \, sen\phi$
+
+$z= \rho \, cos \phi$
+
+<p>----------------------------------------------</p>
+
+$\cfrac{\partial(x,y,z)}{\partial(\rho,\theta,\phi)} = \rho^2 \, sen\phi$
+
+<p>----------------------------------------------</p>
+
+Então
+
+$x^2 + y^2 + z^2 =  \rho^2 \,cos^2\theta\,sen^2\phi\, + \rho^2\, sen^2\theta\,sen^2\phi + \rho^2\,cos^2\phi$
+
+$\rho^2sen^2\phi (cos^2\theta + sen^2 \theta) + \rho^2 cos^2\phi$
+
+$\rho^2 sen^2\phi + \rho^2cos^2\phi =  \rho^2 (\cos^2\phi + sen^2\phi) = \rho^2$
+
+Logo
+
+$M = \displaystyle\int \int \int_{S} \rho^2 \, \rho^2 \,sen\phi \,\,d\theta \,d\phi \,d\rho$
+
+
+Os limites de integração são tais que
+
+$0 \leq \theta \leq 2\pi$, pois a figura gira $2\pi$.
+
+$0 \leq \phi \leq \cfrac{\pi}{4}$, é o resultado da solução $cos \phi = \cfrac{1}{\sqrt2}$.
+
+$0 \leq \rho \leq 1$, pois o o raio da esfera é 1.
+
+Portanto
+
+$M = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho^2 \rho^2 \,sen\phi \,d\theta\, d\phi \,d\rho$
+
+$M = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4}\rho^4sen\phi  \, \theta|_{\theta=0}^{\theta=2\pi} d\phi d\rho$
+
+$M = 2\pi \displaystyle\int_{0}^{1} \int_{0}^{\pi/4}\rho^4 \, sen\phi \, d\phi \, d\rho$
+
+$M =2\pi \displaystyle\int_{0}^{1}\rho^4 \left. -cos(\phi) \right|_{\phi= 0}^{\phi= \pi/4} \,d\rho$
+
+$M=2\pi (1- \cfrac{1}{\sqrt2}) \displaystyle\int_{0}^{1}  \rho^4 \, d\rho$
+
+$M=2\pi (1- \cfrac{1}{\sqrt2}) \left. \cfrac{p^5}{5} \right|_{\rho=0}^{\rho=1}$
+
+$M=\cfrac{2\pi}{5} (1- \cfrac{1}{\sqrt2})$
+
+$M=\cfrac{2\pi}{5}- \cfrac{2\pi}{5\sqrt2}$
+
+\fbox{\large$M = \cfrac{\pi}{5}(2-\sqrt2)$}
+
+
+# 2. Momentos em relação aos eixos coordernados
+
+Seja S um corpo tridimensional de densidade $\rho(x, y, z)$. Os momentos em relação aos planos coordenados xy, yz e xz são dados, respectivamente, por
+
+$M_{xy} = \displaystyle\int \int \int_{S}z\rho(x,y,z) \,dV,$
+
+$M_{xz} = \displaystyle\int \int \int_{S}y\rho(x,y,z) \, dV,$
+
+$M_{yz} = \displaystyle\int \int \int_{S}x\rho(x,y,z) \,dV,$
+
+e que tenha densidade de massa $\rho(x,y,z) = x^2+y^2+z^2$.
+
+Então em coordenadas esféricas temos
+
+$M_{xy} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho cos\phi \, \rho^2 \, \rho^2sen\phi \, \,d\theta\, d\phi \,d\rho$
+
+$M_{xy} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4}\rho^5 \, sen\phi \,cons\phi  \, \, \left.\theta \right|_{\theta=0}^{\theta=2\pi} d\phi d\rho$
+
+$M_{xy} = 2\pi\displaystyle\int_{0}^{1} \int_{0}^{\pi/4}\rho^5 \, sen\phi \,cons\phi  \, \, d\phi \, d\rho$
+
+<p>------------------------------------------------------------------</p>
+
+Para resolver $\displaystyle\int_{0}^{\pi/4} sen\phi \,cons\phi \, \,d\phi$, faremos a seguinte substituição:
+
+$u = sen\phi$, $du = cos\phi$
+
+$\displaystyle\int_{0}^{\pi/4} sen\phi \,cons\phi \, \,d\phi = \displaystyle\int_{0}^{1/\sqrt2}u \, du  = \left. \cfrac{u^2}{2} \right|_0^{1/2} = \cfrac{1}{4}$
+
+<p>------------------------------------------------------------------</p>
+
+$M_{xy} =  \cfrac{1}{4} \,2\pi \displaystyle\int_{0}^{1} \rho^5  \, d\rho$
+
+$M_{xy} =  \cfrac{1}{4}\, 2\pi \, \, \left.\cfrac{\rho^6}{6} \right|_{0}^{1}$
+
+\fbox{\large$M_{xy}=  \cfrac{\pi}{12}$}
+
+
+
+
+$M_{xz} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho \,sen\theta \,sen\phi \, \, \rho^2 \, \, \rho^2sen\phi \, \,d\theta\, d\phi \,d\rho$
+
+
+$M_{xz} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4}  \rho^5  \,sen^2\phi \, \left. -cos\theta \right|_{\theta=0}^{\theta=2\pi}  \, \, d\phi \,d\rho$
+
+
+$M_{xz} = (cos0 - cos2\pi)\displaystyle\int_{0}^{1} \int_{0}^{\pi/4}  \rho^5  \,sen^2\phi \,  \, \, d\phi \,d\rho$
+
+
+\fbox{\large$M_{xz} = 0$}
+
+
+$M_{yz} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho \,\cos\theta \,sen\phi \, \, \rho^2 \, \, \rho^2sen\phi \, \,d\theta\, d\phi \,d\rho$
+
+$M_{yz} = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4}  \rho^5  \,sen^2\phi \, \left. sen\theta \right|_{\theta=0}^{\theta=2\pi}  \, \, d\phi \,d\rho$
+
+$M_{yz} = (sen2\pi - sen0)\displaystyle\int_{0}^{1} \int_{0}^{\pi/4}  \rho^5  \,sen^2\phi \,  \, \, d\phi \,d\rho$
+
+\fbox{\large$M_{yz} = 0$}
+
+
+# 3. Determine os momentos de inércia em relação aos eixos de S.
+
+Os momentos de inércia com respeito aos eixos são dados pelas expressões
+
+$I_x= \displaystyle\int \int \int_{S}(y^2 +z^2)\rho(x,y,z)dV,$
+
+$I_y= \displaystyle\int \int \int_{S}(x^2 +z^2)\rho(x,y,z)dV,$
+
+$I_x= \displaystyle\int \int \int_{S}(x^2 +y^2)\rho(x,y,z)dV,$
+
+Transformando suas coordernadas para coordenadas esféricas:
+
+$$I_x= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} [(\rho  sen\theta  sen\phi)^2+(\rho \cos\phi)^2] \, \rho^2   \rho^2  sen\phi \, dV$$
+
+\normalsize$I_x = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} (\rho \, sen\theta \, sen \phi)^2(\rho^4 sen\phi) \, dV+$
+
+
+$\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}(\rho \, \cos\phi)^2 (\rho^4 sen\phi) \, dV$
+
+<p>------------------------------------------------------------------</p>
+
+$$I_y= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}[(\rho \cos\theta sen\phi)^2+(\rho \cos\phi)^2] \, \rho^2  \rho^2 \, sen\phi \, dV$$
+
+\normalsize$I_y= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} (\rho \, \cos\theta \, sen\phi)^2(\rho^4 sen\phi) \, dV +$
+
+$\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} (\rho \, \cos\phi)^2(\rho^4 sen\phi) \, dV$
+
+<p>------------------------------------------------------------------</p>
+
+$$I_z= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}[(\rho \cos\theta \, sen\phi)^2+(\rho  \, sen\theta \, sen\phi)^2] \, \rho^2  \rho^2 sen\phi\,dV$$
+
+\normalsize$I_z = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}(\rho \, \cos\theta \, sen\phi)^2(\rho^4 sen\phi) \, dV+$
+
+$\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}(\rho \, sen\theta \, sen\phi)(\rho^4 sen\phi) \, dV$
+
+<p>------------------------------------------------------------------</p>
+
+Como as integrais aparecem mais de uma vez vamos calculá-las separadamente e substituí-las na equação:
+
+$I)= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} (\rho \, sen\theta \, sen \phi)^2(\rho^4 sen\phi) \, d\theta d\phi d\rho$
+
+$=\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho^6 \, sen^3\phi \, sen^2\theta \, \, d\theta d\phi d\rho$
+
+
+
+\textcolor{red}{$\displaystyle \int sen^2\theta \, \, d\theta= \displaystyle \int 1- \cfrac{cos(2\theta)}{2} \, \,$}
+
+\textcolor{red}{$= \theta - \cfrac{1}{2}(sen2\theta)$}
+
+
+
+
+$=\displaystyle\int_{0}^{1} \int_{0}^{\pi/4}  \rho^6 \, sen^3\phi \, \left. \cfrac{1}{2}(\theta - sen2\theta) \right|_{\theta=0}^{\theta=2\pi} \,\, d\phi d\rho$
+
+$=\pi\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \rho^6 \, sen^3\phi \, \, d\phi d\rho$
+
+$=\pi \displaystyle\int_{0}^{1}  \rho^6 \, \left. -\cos\phi + \cfrac{\cos^3\phi}{3} \right|_{\phi=0}^{\phi=\pi/4} \,  d\rho$
+
+$=\pi [- \cfrac{1}{\sqrt2}+ \cfrac{1}{6\sqrt2}+ \cfrac{2}{3}] \displaystyle\int_{0}^{1} \rho^6 \, \, d\rho$
+
+\fbox{\normalsize$I) = \cfrac{\pi}{7}[-\cfrac{1}{\sqrt2}+ \cfrac{1}{6\sqrt2}+ \cfrac{2}{3}]$}
+
+
+$II) \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi}(\rho \, \cos\phi)^2 (\rho^4 sen\phi) \,\, d\theta d\phi d\rho$
+
+$=\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho^6 \cos^2\phi \, \, sen\phi \, \, d\theta d\phi d\rho$
+
+$=\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \rho^6 \cos^2\phi \, \, sen\phi \, \left. \theta \right|_{\theta=0}^{\theta=\pi2} \, d\phi d\rho$
+
+$=2\pi\displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \rho^6 \cos^2\phi \, \, sen\phi \,\, d\phi d\rho$
+
+
+\textcolor{red}{$u = \cos\phi$, $du = -sen\phi$}
+
+\textcolor{red}{$\displaystyle\int cos^2\phi \, sen\phi \, \, d\phi = \displaystyle\int -u^2 du$}
+
+\textcolor{red}{$-\displaystyle\int u^2du = -\cfrac{u^3}{3}$}
+
+\textcolor{red}{$= -\cfrac{\cos^3\phi}{3}$}
+
+
+$=2\pi\displaystyle\int_{0}^{1}\rho^6 \, \left. -\cfrac{\cos^3\phi}{3} \right|_{\phi=0}^{\phi=\pi/4}  \, \,  d\rho$
+
+$=2\pi[-\cfrac{1}{6\sqrt2}+ \cfrac{1}{3}]\displaystyle\int_{0}^{1}\rho^6 \,  \, d\rho$
+
+$= 2\pi[-\cfrac{1}{6\sqrt2}+ \cfrac{1}{3}] \left. \cfrac{\rho^7}{7} \right|_{\rho=0}^{\rho=1}$
+
+\fbox{\normalsize$II)\cfrac{2\pi}{7}[-\cfrac{1}{6\sqrt2}+ \cfrac{1}{3}]$}
+
+
+$III) = \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} (\rho \, \cos\theta \, sen\phi)^2(\rho^4 sen\phi) \, dV$
+
+$= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \int_{0}^{2\pi} \rho^6 \cos^2\theta \, sen^3\phi dV$
+
+\textcolor{red}{$\displaystyle\int\cos^2\theta = \displaystyle\int\cfrac{1+\cos2\theta}{2}$}
+
+\textcolor{red}{$=\displaystyle\int1 d\theta + \displaystyle\int \cos2\theta d\theta$}
+
+\textcolor{red}{ $= \cfrac{1}{2}(x+\cfrac{1}{2}sen2\theta) + C$}
+
+$= \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \rho^6 \, sen^3\phi \,\, \left.  \cfrac{1}{2}(\theta+\cfrac{1}{2}sen2\theta) \right|_{\phi=0}^{\phi=2\pi}  d\phi d\rho$
+
+$=  \pi \displaystyle\int_{0}^{1} \int_{0}^{\pi/4} \rho^6 \, sen^3\phi \, \, d\phi d\rho$
+
+\textcolor{red}{$\displaystyle \int sen^3\phi \, d\phi= \displaystyle \int sen^2\phi \,\,  sen\phi \, \, d\phi$}
+
+\textcolor{red}{$= \displaystyle \int  (1-\cos^2\phi) \, sen\phi \, \,d\phi$} 
+
+\textcolor{red}{$u = cos\phi \rightarrow du = -sen\phi$}
+
+\textcolor{red}{$-u + \cfrac{u^3}{3} + C= -\cos\phi + \cfrac{\cos^3\phi}{3} + C$}
+
+$=\pi \displaystyle\int_{0}^{1} \rho^6 \left. (-\cos\phi + \cfrac{\cos^3\phi}{3}) \right|_{\phi=0}^{\phi= \pi/4} d\rho$
+
+
+$= \pi [(-\cfrac{1}{\sqrt2} + \cfrac{1^3}{3\sqrt2^3}) -(-1 + \cfrac{1}{3})] \displaystyle\int_{0}^{1} \rho^6 d\rho$
+
+\fbox{\normalsize$III)= \cfrac{\pi}{7} [(-\cfrac{1}{\sqrt2} + \cfrac{1}{6\sqrt2} + \cfrac{2}{3})]$}
+
+<p>------------------------------------------------------------------</p>
+
+
+$I_x = I + II$
+
+$I_x = \cfrac{\pi}{7}[-\cfrac{1}{\sqrt2}+ \cfrac{1}{6\sqrt2}+ \cfrac{2}{3}] + \cfrac{2\pi}{7}[-\cfrac{1}{6\sqrt2}+ \cfrac{1}{3}]$
+
+\fbox{\large$I_x = \cfrac{\pi}{84}(16-7\sqrt2)$}
+
+
+$I_y = II + III$
+
+$I_y = \cfrac{2\pi}{7}[-\cfrac{1}{6\sqrt2}+ \cfrac{1}{3}] + \cfrac{\pi}{7}[-\cfrac{1}{\sqrt2}+ \cfrac{1}{6\sqrt2}+ \cfrac{2}{3}]$
+
+\fbox{\large$I_y = \cfrac{\pi}{84}(16-7\sqrt2)$}
+
+
+$I_z = III +I$
+
+$I_z =  \cfrac{\pi}{7} [(-\cfrac{1}{\sqrt2} + \cfrac{1}{6\sqrt2} + \cfrac{2}{3})] + \cfrac{\pi}{7}[-\cfrac{1}{\sqrt2}+ \cfrac{1}{6\sqrt2}+ \cfrac{2}{3}]$
+
+\fbox{\large$I_z = \cfrac{\pi}{42}(8- 5\sqrt2)$}
+
+
+\onecolumn
+
+# 4. Encontre o centro de massa S
+
+
+Os centros de massa são 
+
+$\bar{x}=M_{yz}/M$ 
+
+$\bar{x}=\cfrac{0}{\cfrac{\pi}{5}(2-\sqrt2)}$
+
+\fbox{\large$\bar{x}= 0$}
+
+$\bar{y}=M_{xz}/M$
+
+$\bar{y}=\cfrac{0}{\cfrac{\pi}{5}(2-\sqrt2)}$
+
+\fbox{\large$\bar{y}=0$}
+
+$\bar{z} = M_{xy}/M$
+
+$\bar{z} = \cfrac{\cfrac{\pi}{12}}{\cfrac{\pi}{5}(2-\sqrt2)}$
+
+\fbox{\large$\bar{z} = \cfrac{5}{24-12\sqrt2}$}
+
