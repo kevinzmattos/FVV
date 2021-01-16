@@ -1,2 +1,2 @@
-# FVV
-Espaço para compartilhar o relatório da atividade 1
+# Funções de várias variáveis
+Espaço para compartilhar as atividades e provas da máteria "Funcões de Várias Variáveis" ofertada pela professora Priscila Leal na UFABC
